@@ -33,9 +33,24 @@ document.getElementById("dist").addEventListener("change", function () {
     }
 });
 
+/* Factorial */
 function factorial(n) {
     if (n <= 1) return 1;
     return n * factorial(n - 1);
+}
+
+/* 🔥 Smart probability formatter */
+function formatProb(x) {
+    if (x === 0) return "0.000";
+
+    let fixed = x.toFixed(3);
+
+    // If it rounds to 0.000 but isn't actually zero
+    if (fixed === "0.000") {
+        return x.toExponential(3); // e.g. 1.23e-5
+    }
+
+    return fixed;
 }
 
 /* 🔥 Result card builder */
@@ -72,7 +87,7 @@ function calculate() {
             let prob = (factorial(n) / (factorial(k) * factorial(n - k))) * (p ** k) * ((1 - p) ** (n - k));
 
             result = resultCard("Binomial Distribution", [
-                { label: `P[X = ${k}]`, value: prob.toFixed(3) },
+                { label: `P[X = ${k}]`, value: formatProb(prob) },
                 { label: "E[X]", value: mean.toFixed(3) },
                 { label: "VAR[X]", value: variance.toFixed(3) }
             ]);
@@ -85,7 +100,7 @@ function calculate() {
             let prob = (lambda ** k * Math.exp(-lambda)) / factorial(k);
 
             result = resultCard("Poisson Distribution", [
-                { label: `P(X = ${k})`, value: prob.toFixed(3) },
+                { label: `P(X = ${k})`, value: formatProb(prob) },
                 { label: "E[X]", value: lambda.toFixed(3) },
                 { label: "VAR[X]", value: lambda.toFixed(3) }
             ]);
