@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Probability Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Probability Calculator</h1>
+
+    <select id="dist">
+        <option value="">Select Distribution</option>
+        <option value="binomial">Binomial</option>
+        <option value="poisson">Poisson</option>
+        <option value="uniform">Uniform</option>
+        <option value="rayleigh">Rayleigh</option>
+    </select>
+
+    <div id="inputs"></div>
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div id="result"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
